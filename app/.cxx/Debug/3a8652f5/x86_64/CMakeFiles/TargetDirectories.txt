@@ -1,0 +1,5 @@
+/home/xxx/.cache/git/x-syaifullah-x/started-project-android/app/.cxx/Debug/3a8652f5/x86_64/CMakeFiles/example_executable.dir
+/home/xxx/.cache/git/x-syaifullah-x/started-project-android/app/.cxx/Debug/3a8652f5/x86_64/CMakeFiles/example-jni-on-load.dir
+/home/xxx/.cache/git/x-syaifullah-x/started-project-android/app/.cxx/Debug/3a8652f5/x86_64/CMakeFiles/normal.dir
+/home/xxx/.cache/git/x-syaifullah-x/started-project-android/app/.cxx/Debug/3a8652f5/x86_64/CMakeFiles/edit_cache.dir
+/home/xxx/.cache/git/x-syaifullah-x/started-project-android/app/.cxx/Debug/3a8652f5/x86_64/CMakeFiles/rebuild_cache.dir

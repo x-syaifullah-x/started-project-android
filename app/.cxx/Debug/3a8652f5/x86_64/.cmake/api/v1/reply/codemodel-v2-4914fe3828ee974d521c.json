@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.6.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "started-project-with-jni",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "example-jni-on-load::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-example-jni-on-load-Debug-cf991d1a75a6b23fd742.json",
+					"name" : "example-jni-on-load",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "example_executable::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-example_executable-Debug-a9210b448c2fcc09c8a4.json",
+					"name" : "example_executable",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "normal::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-normal-Debug-88a05b33826eedb1bd82.json",
+					"name" : "normal",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/xxx/.cache/git/x-syaifullah-x/started-project-android/app/.cxx/Debug/3a8652f5/x86_64",
+		"source" : "/home/xxx/.cache/git/x-syaifullah-x/started-project-android/app/src/main/cpp"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

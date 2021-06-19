@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/xxx/.cache/git/x-syaifullah-x/started-project-android/app/.cxx/Debug/3a8652f5/x86",
+  "command": "/home/xxx/.files/Linux/SDK/Android/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=i686-none-linux-android21 --sysroot=/home/xxx/.files/Linux/SDK/Android/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DAPI_KEY=\\\"0123456789\\\" -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -fvisibility=hidden -fno-limit-debug-info  -fPIE -o CMakeFiles/example_executable.dir/executable/main.cpp.o -c /home/xxx/.cache/git/x-syaifullah-x/started-project-android/app/src/main/cpp/executable/main.cpp",
+  "file": "/home/xxx/.cache/git/x-syaifullah-x/started-project-android/app/src/main/cpp/executable/main.cpp"
+},
+{
+  "directory": "/home/xxx/.cache/git/x-syaifullah-x/started-project-android/app/.cxx/Debug/3a8652f5/x86",
+  "command": "/home/xxx/.files/Linux/SDK/Android/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=i686-none-linux-android21 --sysroot=/home/xxx/.files/Linux/SDK/Android/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DAPI_KEY=\\\"0123456789\\\" -Dexample_jni_on_load_EXPORTS -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -fvisibility=hidden -fno-limit-debug-info  -fPIC -o CMakeFiles/example-jni-on-load.dir/shared/example_jni_on_load/register.cpp.o -c /home/xxx/.cache/git/x-syaifullah-x/started-project-android/app/src/main/cpp/shared/example_jni_on_load/register.cpp",
+  "file": "/home/xxx/.cache/git/x-syaifullah-x/started-project-android/app/src/main/cpp/shared/example_jni_on_load/register.cpp"
+},
+{
+  "directory": "/home/xxx/.cache/git/x-syaifullah-x/started-project-android/app/.cxx/Debug/3a8652f5/x86",
+  "command": "/home/xxx/.files/Linux/SDK/Android/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=i686-none-linux-android21 --sysroot=/home/xxx/.files/Linux/SDK/Android/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DAPI_KEY=\\\"0123456789\\\" -Dnormal_EXPORTS -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -fvisibility=hidden -fno-limit-debug-info  -fPIC -o CMakeFiles/normal.dir/shared/app.cpp.o -c /home/xxx/.cache/git/x-syaifullah-x/started-project-android/app/src/main/cpp/shared/app.cpp",
+  "file": "/home/xxx/.cache/git/x-syaifullah-x/started-project-android/app/src/main/cpp/shared/app.cpp"
+}
+]

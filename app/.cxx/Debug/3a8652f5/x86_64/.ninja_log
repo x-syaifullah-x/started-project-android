@@ -1,0 +1,7 @@
+# ninja log v5
+0	76	1706387470723728854	CMakeFiles/example_executable.dir/executable/main.cpp.o	69369fe1b5e39d1c
+9	117	1706387470771728852	CMakeFiles/example-jni-on-load.dir/shared/example_jni_on_load/register.cpp.o	aaceddc5ee9a6a46
+0	161	1706387470815728851	CMakeFiles/normal.dir/shared/app.cpp.o	b0a364b83f282d79
+77	209	1706387470811728851	/home/xxx/.cache/git/x-syaifullah-x/started-project-android/app/build/intermediates/cxx/Debug/3a8652f5/obj/x86_64/example_executable	6d195a8e1af7a8de
+161	282	1706387470931728846	/home/xxx/.cache/git/x-syaifullah-x/started-project-android/app/build/intermediates/cxx/Debug/3a8652f5/obj/x86_64/libnormal.so	5eb5fe1406b0c0ce
+282	368	1706387471019728842	/home/xxx/.cache/git/x-syaifullah-x/started-project-android/app/build/intermediates/cxx/Debug/3a8652f5/obj/x86_64/libexample-jni-on-load.so	3e3c8c1bc4e673e

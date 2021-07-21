@@ -10,6 +10,8 @@ ext.build_versions = build_versions
 ext {
     vGradle = "4.2.2"
     vKotlin = "1.5.21"
+
+    vNdk = "22.1.7171670"
 }
 
 static def addRepos(RepositoryHandler handler) {

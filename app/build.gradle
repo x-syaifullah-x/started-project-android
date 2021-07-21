@@ -47,14 +47,19 @@ android {
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            debuggable true
+            jniDebuggable true
             signingConfig signingConfigs.debug
+            multiDexEnabled true
         }
 
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
-            debuggable false
+            debuggable true
+            jniDebuggable false
             signingConfig signingConfigs.release
+            multiDexEnabled true
         }
     }
 

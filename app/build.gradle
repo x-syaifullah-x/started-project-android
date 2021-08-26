@@ -66,6 +66,11 @@ android {
     buildFeatures {
         viewBinding true
     }
+    
+    testOptions {
+        unitTests.returnDefaultValues = true
+        unitTests.includeAndroidResources = true
+    }
 
 //    packagingOptions {
 //        exclude "**/attach_hotspot_windows.dll"

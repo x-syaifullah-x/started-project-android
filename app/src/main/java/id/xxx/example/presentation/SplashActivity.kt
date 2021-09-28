@@ -1,18 +1,17 @@
 package id.xxx.example.presentation
 
+import android.animation.ObjectAnimator
 import android.app.Activity
+import android.content.Intent
 import android.graphics.drawable.LayerDrawable
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import android.view.WindowManager
-import androidx.annotation.RequiresApi
-import android.animation.ObjectAnimator
-import android.content.Intent
-import android.os.Handler
-import android.os.Looper
 import id.xxx.example.R
 import id.xxx.example.presentation.home.MainActivity
 
@@ -27,7 +26,7 @@ class SplashActivity : Activity() {
         val anim = ObjectAnimator.ofInt(
             drawable, "level", 0, 3000
         )
-        drawable.alpha = 100
+        if (drawable.alpha == 0) drawable.alpha = 100
         anim.repeatCount = ObjectAnimator.INFINITE
         anim.start()
 

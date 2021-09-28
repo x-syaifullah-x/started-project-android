@@ -15,6 +15,8 @@ android {
         versionName build_versions.version_name
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        resConfigs "en", "id"
     }
 
     compileOptions {
@@ -61,7 +63,7 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
-            debuggable true
+            debuggable false
             jniDebuggable false
             signingConfig signingConfigs.release
             multiDexEnabled true
@@ -71,7 +73,14 @@ android {
     buildFeatures {
         viewBinding true
     }
-    
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions { jvmTarget = "1.8" }
+
     testOptions {
         unitTests.returnDefaultValues = true
         unitTests.includeAndroidResources = true
@@ -92,8 +101,8 @@ dependencies {
 //    implementation "androidx.constraintlayout:constraintlayout:2.1.1"
 
     testImplementation "junit:junit:$vJunit"
-//    testImplementation "org.mockito:mockito-core:3.9.0"
-//    testImplementation "org.mockito:mockito-inline:3.9.0"
+    testImplementation "org.mockito:mockito-core:$vMockito"
+    testImplementation "org.mockito:mockito-inline:$vMockito"
 
     androidTestImplementation "androidx.test.ext:junit:$vAndroidJunit"
 }

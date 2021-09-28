@@ -26,12 +26,6 @@
 	public static void throw*(...);
 }
 
-# Strip Timber verbose and debug logging
--assumenosideeffects class timber.log.Timber$Tree {
-    public void v(**);
-    public void d(**);
-}
-
 # Excessive obfuscation
 -repackageclasses "com"
 -allowaccessmodification

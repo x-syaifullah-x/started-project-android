@@ -17,6 +17,8 @@ import id.xxx.example.presentation.home.MainActivity
 
 class SplashActivity : Activity() {
 
+    private val handler = Handler(Looper.getMainLooper())
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -26,15 +28,20 @@ class SplashActivity : Activity() {
         val anim = ObjectAnimator.ofInt(
             drawable, "level", 0, 3000
         )
-        if (drawable.alpha == 0) drawable.alpha = 100
+        if (drawable.alpha == 0) drawable.alpha = 255
         anim.repeatCount = ObjectAnimator.INFINITE
         anim.start()
 
-        Handler(Looper.getMainLooper()).postDelayed({
+        handler.postDelayed({
             drawable.alpha = 0
             finish()
             startActivity(Intent(this, MainActivity::class.java))
         }, 4000)
+    }
+
+    override fun onBackPressed() {
+        handler.removeCallbacksAndMessages(null)
+        finishAfterTransition()
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {

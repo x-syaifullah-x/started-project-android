@@ -3,6 +3,11 @@
 
     <item android:drawable="@color/splash_background_color" />
 
+    <item
+        android:id="@+id/splash_logo"
+        android:drawable="@drawable/ic_splash_logo"
+        android:gravity="center" />
+
     <!--    <item>-->
     <!--        <shape>-->
     <!--            <gradient-->
@@ -14,10 +19,6 @@
     <!--                android:type="radial" />-->
     <!--        </shape>-->
     <!--    </item>-->
-
-    <item
-        android:drawable="@drawable/ic_splash_logo"
-        android:gravity="center" />
 
     <!--    <item android:top="100dp">-->
     <!--        <bitmap-->

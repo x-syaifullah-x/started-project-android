@@ -16,6 +16,39 @@
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             app:layout_scrollFlags="scroll|enterAlways"
-            tools:title="Title Toolbar" />
+            app:titleTextAppearance="@style/Toolbar.TextAppearance"
+            app:titleTextColor="@color/Toolbar.Title.Color"
+            tools:title="@string/app_name" />
     </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?attr/actionBarSize"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WELCOME MY APPLICATION"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/click_me"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.95" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/click_me"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="?attr/colorPrimary"
+            android:text="Click Me"
+            android:textColor="@color/Toolbar.Title.Color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_percent=".8" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

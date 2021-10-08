@@ -25,7 +25,8 @@ jobs:
         key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
     - run:
         name: Lists installed targets
-        command: android list target
+#        command: android list target
+        command: avdmanager list target
         environment:
         TERM: dumb
     - run:

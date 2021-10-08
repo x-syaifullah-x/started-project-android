@@ -4,7 +4,7 @@ jobs:
     working_directory: ~/code
     docker:
       - image: circleci/android:api-30
-#    resource_class: xlarge
+    #    resource_class: xlarge
     environment:
       JVM_OPTS: -Xmx3200m -XX:+IgnoreUnrecognizedVMOptions --add-modules java.xml.bind
     steps:
@@ -41,7 +41,8 @@ jobs:
           command: |
             cd ${ANDROID_HOME}/emulator;ls
             export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib
-            emulator -avd test -no-window -noaudio -no-boot-anim -no-window -accel off
+          #            emulator -avd test -no-window -noaudio -no-boot-anim -no-window -accel off
+          emulator -avd test -delay-adb -verbose -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
           background: true
       - run:
           name: Wait emulator

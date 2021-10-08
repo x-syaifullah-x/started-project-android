@@ -104,5 +104,4 @@ dependencies {
     testImplementation "org.mockito:mockito-inline:$vMockito"
 
     androidTestImplementation "androidx.test.ext:junit:$vAndroidJunit"
-//    androidTestImplementation "androidx.test.espresso:espresso-core:3.4.0"
 }

@@ -17,6 +17,7 @@ import id.xxx.example.presentation.home.MainActivity
 
 class SplashActivity : Activity() {
 
+
     private val handler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {

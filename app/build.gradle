@@ -9,8 +9,8 @@ android {
 
     defaultConfig {
         applicationId "id.xxx.example"
-        minSdkVersion build_versions.min_sdk_version
-        targetSdkVersion build_versions.target_sdk_version
+        minSdk build_versions.min_sdk_version
+        targetSdk build_versions.target_sdk_version
         versionCode build_versions.version_code
         versionName build_versions.version_name
 
@@ -104,4 +104,5 @@ dependencies {
     testImplementation "org.mockito:mockito-inline:$vMockito"
 
     androidTestImplementation "androidx.test.ext:junit:$vAndroidJunit"
+//    androidTestImplementation "androidx.test.espresso:espresso-core:3.4.0"
 }

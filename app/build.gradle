@@ -28,7 +28,7 @@ android {
 
     signingConfigs {
 //        def homePath = System.properties['user.home']
-        def store_file = file("$projectDir/key_store/debug.keystore")
+        def store_file = file("$rootDir/key_store/debug.keystore")
         debug {
             storeFile store_file
             storePassword "android"

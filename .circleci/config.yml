@@ -5,12 +5,14 @@ jobs:
       image: android:202102-01
     # To optimize build times, we recommend "large" and above for Android-related jobs
     resource_class: large
+    environment:
+      JVM_OPTS: -Xmx4096m #-XX:+IgnoreUnrecognizedVMOptions --add-modules java.xml.bind
     steps:
       - checkout
-#      - run:
-#          name: Sdk List
-#          command: |
-#            sdkmanager --list
+      #      - run:
+      #          name: Sdk List
+      #          command: |
+      #            sdkmanager --list
       - run:
           name: Create AVD
           command: |

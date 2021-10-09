@@ -9,14 +9,13 @@ jobs:
     steps:
       - checkout
       #      - run:
-      #          name: Sdk List
-      #          command: |
-      #            sdkmanager --list
+      #          name: sdk manager list
+      #          command: sdkmanager --list
 
       - run:
           name: create avd
           command: |
-            SYSTEM_IMAGES="system-images;android-30;google_apis;x86_64"
+            SYSTEM_IMAGES="system-images;android-31;default;x86_64"
             sdkmanager "$SYSTEM_IMAGES"
             echo "no" | avdmanager --verbose create avd -n test -k "$SYSTEM_IMAGES"
 
@@ -37,7 +36,6 @@ jobs:
           key: gradle-v0-{{ arch }}-{{ checksum "/tmp/gradle_cache_seed" }}
 
       - run:
-          # run in parallel with the emulator starting up, to optimize build time
           name: gradle assemble android test
           command: |
             ./gradlew assembleAndroidTest

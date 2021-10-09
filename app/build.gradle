@@ -4,6 +4,8 @@ plugins {
 }
 
 android {
+    testBuildType "release"
+
     compileSdkVersion build_versions.compile_sdk_version
     buildToolsVersion build_versions.build_tools_version
 
@@ -52,6 +54,7 @@ android {
 
     buildTypes {
         debug {
+            applicationIdSuffix ".debug"
             minifyEnabled false
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             debuggable true
@@ -61,6 +64,7 @@ android {
         }
 
         release {
+            applicationIdSuffix ".release"
             minifyEnabled true
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             debuggable false

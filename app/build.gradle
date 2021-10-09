@@ -18,7 +18,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        resConfigs "en", "id"
+        resConfigs "en" //,"id"
     }
 
     compileOptions {
@@ -47,7 +47,6 @@ android {
 
     buildTypes {
         debug {
-            applicationIdSuffix ".debug"
             minifyEnabled false
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             debuggable true
@@ -56,7 +55,6 @@ android {
         }
 
         release {
-            applicationIdSuffix ".release"
             minifyEnabled true
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             debuggable false

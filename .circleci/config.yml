@@ -3,10 +3,9 @@ jobs:
   build:
     machine:
       image: android:202102-01
-    # To optimize build times, we recommend "large" and above for Android-related jobs
     resource_class: large
     environment:
-      JVM_OPTS: -Xmx4096m #-XX:+IgnoreUnrecognizedVMOptions --add-modules java.xml.bind
+      JVM_OPTS: -Xmx4096m
     steps:
       - checkout
       #      - run:
@@ -55,7 +54,7 @@ jobs:
             adb shell settings put global animator_duration_scale 0.0
 
       - run:
-          name: gradle connect android test
+          name: gradle connected android test
           command: |
             MAX_TRIES=2
             run_with_retry() {

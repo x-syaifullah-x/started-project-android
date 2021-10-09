@@ -29,7 +29,6 @@ android {
     kotlinOptions { jvmTarget = "1.8" }
 
     signingConfigs {
-//        def homePath = System.properties['user.home']
         def store_file = file("$rootDir/key_store/debug.keystore")
         debug {
             storeFile store_file
@@ -43,12 +42,6 @@ android {
             storePassword "android"
             keyAlias "androiddebugkey"
             keyPassword "android"
-//            Properties properties = new Properties()
-//            properties.load(project.rootProject.file("local.properties").newDataInputStream())
-//            storeFile file(properties.getProperty("storeFile"))
-//            storePassword properties.getProperty("storePassword")
-//            keyAlias properties.getProperty("keyAlias")
-//            keyPassword properties.getProperty("keyPassword")
         }
     }
 
@@ -60,7 +53,6 @@ android {
             debuggable true
             jniDebuggable true
             signingConfig signingConfigs.debug
-            multiDexEnabled true
         }
 
         release {
@@ -70,7 +62,6 @@ android {
             debuggable false
             jniDebuggable false
             signingConfig signingConfigs.release
-            multiDexEnabled true
         }
     }
 

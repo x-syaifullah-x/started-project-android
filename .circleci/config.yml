@@ -1,58 +1,70 @@
-version: 2
+version: 2.1
 jobs:
   build:
-    working_directory: ~/code
-    docker:
-      - image: circleci/android:api-30
-    #    resource_class: xlarge
-    environment:
-      JVM_OPTS: -Xmx3200m -XX:+IgnoreUnrecognizedVMOptions --add-modules java.xml.bind
+    machine:
+      image: android:202102-01
+    # To optimize build times, we recommend "large" and above for Android-related jobs
+    resource_class: large
     steps:
       - checkout
-      - restore_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+#      - run:
+#          name: Sdk List
+#          command: |
+#            sdkmanager --list
       - run:
-          name: Chmod permissions
-          command: sudo chmod +x ./gradlew
-      - run:
-          name: Accept licenses
-          command: yes | sdkmanager --licenses || true
-      - run:
-          name: Download Dependencies
-          command: ./gradlew androidDependencies
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-      - run:
-          name: Lists installed targets
-          #        command: android list target
-          command: avdmanager list target
-          environment:
-          TERM: dumb
-      - run:
-          name: Show list of system-images
-          command: sdkmanager --list --verbose | grep system-images
-      - run:
-          name: Setup Emulator
-          command: sdkmanager "system-images;android-21;google_apis;x86_64" && echo "no" | avdmanager create avd -n test -k "system-images;android-21;google_apis;x86_64"
+          name: Create AVD
+          command: |
+            SYSTEM_IMAGES="system-images;android-30;default;x86_64"
+            sdkmanager "$SYSTEM_IMAGES"
+            echo "no" | avdmanager --verbose create avd -n test -k "$SYSTEM_IMAGES"
       - run:
           name: Launch Emulator
           command: |
-            cd ${ANDROID_HOME}/emulator;ls
-            export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib
-            emulator -avd test -delay-adb -verbose -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -accel off
+            emulator -avd test -delay-adb -verbose -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -memory 4096 -qemu -enable-kvm
           background: true
       - run:
-          name: Wait emulator
+          name: Generate Cache Key
+          command: |
+            find . -name 'build.gradle' | sort | xargs cat |
+            shasum | awk '{print $1}' > /tmp/gradle_cache_seed
+      - restore_cache:
+          key: gradle-v0-{{ arch }}-{{ checksum "/tmp/gradle_cache_seed" }}
+      - run:
+          # run in parallel with the emulator starting up, to optimize build time
+          name: Run Assemble Debug Android Test
+          command: |
+            ./gradlew assembleDebugAndroidTest
+      - run:
+          name: Wait For Emulator To Start
           command: |
             circle-android wait-for-boot
-#            adb shell input keyevent 82
       - run:
-          name: Run Espresso UI Tests
-          command: ./gradlew :app:connectedDebugAndroidTest
+          name: Disable Emulator Animations
+          command: |
+            adb shell settings put global window_animation_scale 0.0
+            adb shell settings put global transition_animation_scale 0.0
+            adb shell settings put global animator_duration_scale 0.0
       - run:
-          name: Run UnitTest
+          name: Run Android Test
+          command: |
+            MAX_TRIES=2
+            run_with_retry() {
+               n=1
+               until [ $n -gt $MAX_TRIES ]
+               do
+                  echo "Starting test attempt $n"
+                  ./gradlew connectedDebugAndroidTest && break
+                  n=$[$n+1]
+                  sleep 5
+               done
+               if [ $n -gt $MAX_TRIES ]; then
+                 echo "Max tries reached ($MAX_TRIES)"
+                 exit 1
+               fi
+            }
+            run_with_retry
+      - run:
+          name: Run Unit Test
           command: ./gradlew testDebugUnitTest
       - store_artifacts:
           path: app/build/reports
@@ -62,3 +74,11 @@ jobs:
           destination: apks
       - store_test_results:
           path: app/build/test-results
+      - save_cache:
+          key: gradle-v0-{{ arch }}-{{ checksum "/tmp/gradle_cache_seed" }}
+          paths:
+            - ~/.gradle
+workflows:
+  build:
+    jobs:
+      - build

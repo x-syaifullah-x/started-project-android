@@ -8,46 +8,55 @@ jobs:
     environment:
       JVM_OPTS: -Xmx4096m #-XX:+IgnoreUnrecognizedVMOptions --add-modules java.xml.bind
     steps:
+
       - checkout
       #      - run:
       #          name: Sdk List
       #          command: |
       #            sdkmanager --list
+
       - run:
-          name: Create AVD
+          name: create avd
           command: |
             SYSTEM_IMAGES="system-images;android-30;default;x86_64"
             sdkmanager "$SYSTEM_IMAGES"
             echo "no" | avdmanager --verbose create avd -n test -k "$SYSTEM_IMAGES"
+
       - run:
-          name: Launch Emulator
+          name: launch emulator
           command: |
             emulator -avd test -delay-adb -verbose -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -memory 4096 -qemu -enable-kvm
           background: true
+
       - run:
-          name: Generate Cache Key
+          name: genarate cache key
           command: |
             find . -name 'build.gradle' | sort | xargs cat |
             shasum | awk '{print $1}' > /tmp/gradle_cache_seed
+
       - restore_cache:
           key: gradle-v0-{{ arch }}-{{ checksum "/tmp/gradle_cache_seed" }}
+
       - run:
           # run in parallel with the emulator starting up, to optimize build time
-          name: Run Assemble Debug Android Test
+          name: gradle assemble android test
           command: |
-            ./gradlew build
+            ./gradlew assembleAndroidTest
+
       - run:
-          name: Wait For Emulator To Start
+          name: wait for emulator to start
           command: |
             circle-android wait-for-boot
+
       - run:
-          name: Disable Emulator Animations
+          name: disable emulator animations
           command: |
             adb shell settings put global window_animation_scale 0.0
             adb shell settings put global transition_animation_scale 0.0
             adb shell settings put global animator_duration_scale 0.0
+
       - run:
-          name: Run Android Test
+          name: gradle connect android test
           command: |
             MAX_TRIES=2
             run_with_retry() {
@@ -65,21 +74,27 @@ jobs:
                fi
             }
             run_with_retry
+
       - run:
-          name: Run Unit Test
-          command: ./gradlew testDebugUnitTest
+          name: gradle unit test
+          command: ./gradlew test
+
       - store_artifacts:
           path: app/build/reports
           destination: reports
+
       - store_artifacts:
           path: app/build/outputs/apk
           destination: apks
+
       - store_test_results:
           path: app/build/test-results
+
       - save_cache:
           key: gradle-v0-{{ arch }}-{{ checksum "/tmp/gradle_cache_seed" }}
           paths:
             - ~/.gradle
+
 workflows:
   build:
     jobs:

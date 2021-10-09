@@ -23,7 +23,7 @@ jobs:
       - run:
           name: launch emulator
           command: |
-            emulator -avd test -delay-adb -verbose -no-window -noaudio -no-boot-anim -memory 4096 -qemu -m 4096 -enable-kvm
+            emulator -avd test -delay-adb -verbose -no-window -noaudio -no-boot-anim -memory 4096 -accel on -qemu -m 4096 -smp cores=4" -enable-kvm
           background: true
 
       - run:

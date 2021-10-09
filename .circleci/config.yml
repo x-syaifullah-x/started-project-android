@@ -8,7 +8,6 @@ jobs:
     environment:
       JVM_OPTS: -Xmx4096m #-XX:+IgnoreUnrecognizedVMOptions --add-modules java.xml.bind
     steps:
-
       - checkout
       #      - run:
       #          name: Sdk List
@@ -35,7 +34,7 @@ jobs:
             shasum | awk '{print $1}' > /tmp/gradle_cache_seed
 
       - restore_cache:
-          key: gradle-v0-arch1-linux-amd64-6_63-ET5ikgmhslx4SdacP7xOM8r8jJDxVh6VXUFSNjUK+EY=
+          key: gradle-v0-{{ arch }}-{{ checksum "/tmp/gradle_cache_seed" }}
 
       - run:
           # run in parallel with the emulator starting up, to optimize build time
@@ -91,7 +90,7 @@ jobs:
           path: app/build/test-results
 
       - save_cache:
-          key: gradle-v0-arch1-linux-amd64-6_63-ET5ikgmhslx4SdacP7xOM8r8jJDxVh6VXUFSNjUK+EY=
+          key: gradle-v0-{{ arch }}-{{ checksum "/tmp/gradle_cache_seed" }}
           paths:
             - ~/.gradle
 

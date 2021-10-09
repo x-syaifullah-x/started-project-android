@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    testBuildType "release"
+    testBuildType "debug"
 
     compileSdkVersion build_versions.compile_sdk_version
     buildToolsVersion build_versions.build_tools_version

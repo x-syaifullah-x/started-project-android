@@ -1,3 +1,4 @@
+[skip ci]
 version: 2.1
 jobs:
   build:

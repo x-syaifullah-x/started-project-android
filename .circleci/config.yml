@@ -4,13 +4,10 @@ jobs:
     machine:
       image: android:202102-01
     resource_class: large
-#    environment:
-#      JVM_OPTS: -Xmx4096m
+    #    environment:
+    #      JVM_OPTS: -Xmx4096m
     steps:
       - checkout
-      #      - run:
-      #          name: sdk manager list
-      #          command: sdkmanager --list
 
       - run:
           name: create avd
@@ -35,9 +32,20 @@ jobs:
           key: gradle-v0-{{ arch }}-{{ checksum "/tmp/gradle_cache_seed" }}
 
       - run:
-          name: gradle assemble android test
+          name: replace gradle properties
           command: |
-            ./gradlew assembleAndroidTest
+            ORG_GRADLE_JVM=`cat gradle.properties | grep org.gradle.jvmargs`
+            sed -i 's/'"${ORG_GRADLE_JVM}"'/org.gradle.jvmargs=-Xmx4096m -Dfile.encoding=UTF-8/g' gradle.properties
+            cat gradle.properties | grep org.gradle.jvmargs
+
+      - run:
+          name: gradle clean build
+          command: |
+            ./gradlew clean build
+      #      - run:
+      #          name: gradle assemble android test
+      #          command: |
+      #            ./gradlew assembleAndroidTest
 
       - run:
           name: wait for emulator to start

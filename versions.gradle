@@ -8,7 +8,7 @@ build_versions.version_name = "1.0"
 ext.build_versions = build_versions
 
 ext {
-    vGradle = "7.0.2"
+    vGradle = "7.0.3"
     vKotlin = "1.5.31"
 
     vJunit = "4.13.2"
@@ -16,7 +16,7 @@ ext {
     vMockito = "3.12.4"
 }
 
-static def addRepos(RepositoryHandler handler) {
+def addRepos(RepositoryHandler handler) {
     handler.google()
     handler.mavenCentral()
     handler.mavenLocal()
@@ -24,6 +24,9 @@ static def addRepos(RepositoryHandler handler) {
         url "https://jcenter.bintray.com"
         url "https://oss.sonatype.org/content/repositories/snapshots"
         url "https://jitpack.io"
+    }
+    handler.mavenLocal { mar ->
+        mar.url("${rootDir}/.m2/repository")
     }
 }
 

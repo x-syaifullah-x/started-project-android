@@ -4,8 +4,8 @@ jobs:
     machine:
       image: android:202102-01
     resource_class: large
-    environment:
-      JVM_OPTS: -Xmx4096m
+#    environment:
+#      JVM_OPTS: -Xmx4096m
     steps:
       - checkout
       #      - run:
@@ -23,7 +23,6 @@ jobs:
           name: launch emulator
           command: |
             emulator -avd test -delay-adb -verbose -no-window -noaudio -no-boot-anim -memory 4096 -accel on
-#            -qemu -m 4096 -smp cores=4 -enable-kvm
           background: true
 
       - run:

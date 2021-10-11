@@ -4,8 +4,6 @@ plugins {
 }
 
 android {
-    testBuildType "debug"
-
     compileSdkVersion build_versions.compile_sdk_version
     buildToolsVersion build_versions.build_tools_version
 
@@ -18,15 +16,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        resConfigs "en" //,"id"
+        resConfigs "en"
     }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions { jvmTarget = "1.8" }
 
     signingConfigs {
         def store_file = file("$rootDir/key_store/debug.keystore")
@@ -74,6 +65,8 @@ android {
 
     kotlinOptions { jvmTarget = "1.8" }
 
+    testBuildType "debug"
+
     testOptions {
         unitTests.returnDefaultValues = true
         unitTests.includeAndroidResources = true
@@ -81,9 +74,6 @@ android {
 
 //    packagingOptions {
 //        exclude "**/attach_hotspot_windows.dll"
-//        exclude "META-INF/licenses/ASM"
-//        exclude "META-INF/AL2.0"
-//        exclude "META-INF/LGPL2.1"
 //    }
 }
 

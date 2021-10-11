@@ -19,12 +19,12 @@ ext {
 def addRepos(RepositoryHandler handler) {
     handler.google()
     handler.mavenCentral()
-    handler.mavenLocal()
     handler.maven {
         url "https://jcenter.bintray.com"
         url "https://oss.sonatype.org/content/repositories/snapshots"
         url "https://jitpack.io"
     }
+    handler.mavenLocal()
     handler.mavenLocal { mar ->
         mar.url("${rootDir}/.m2/repository")
     }

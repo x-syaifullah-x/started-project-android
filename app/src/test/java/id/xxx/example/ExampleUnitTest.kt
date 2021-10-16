@@ -6,6 +6,6 @@ import org.junit.Test
 class ExampleUnitTest {
     @Test
     fun exampleUnitTest() {
-        print(message)
+        Assert.assertTrue(true)
     }
 }

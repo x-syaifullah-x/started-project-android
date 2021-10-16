@@ -35,7 +35,7 @@ jobs:
           name: replace gradle properties
           command: |
             ORG_GRADLE_JVM=`cat gradle.properties | grep org.gradle.jvmargs`
-            sed -i 's/'"${ORG_GRADLE_JVM}"'/org.gradle.jvmargs=-Xmx4096m -Dfile.encoding=UTF-8/g' gradle.properties
+            sed -i 's/'"${ORG_GRADLE_JVM}"'/org.gradle.jvmargs=-Xmx8192m -Dfile.encoding=UTF-8/g' gradle.properties
             cat gradle.properties | grep org.gradle.jvmargs
 
       - run:
@@ -87,9 +87,12 @@ jobs:
           path: app/build/reports
           destination: reports
 
+      #      - store_artifacts:
+      #          path: app/build/outputs/apk
+      #          destination: apks
       - store_artifacts:
-          path: app/build/outputs/apk
-          destination: apks
+          path: app/build/outputs
+          destination: outputs
 
       - store_test_results:
           path: app/build/test-results

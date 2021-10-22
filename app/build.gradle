@@ -87,5 +87,5 @@ dependencies {
     testImplementation "org.mockito:mockito-inline:$vMockito"
 
     androidTestImplementation "androidx.test.ext:junit-ktx:$vAndroidJunit"
-    androidTestImplementation "androidx.test.espresso:espresso-core:3.4.0"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$vEspresso"
 }

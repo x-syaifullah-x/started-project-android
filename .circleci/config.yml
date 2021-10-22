@@ -10,6 +10,10 @@ jobs:
       - checkout
 
       - run:
+          name: see directory android sdk
+          command: ls -la /opt/android/sdk/*
+
+      - run:
           name: genarate cache key
           command: |
             find . -name 'build.gradle' | sort | xargs cat |

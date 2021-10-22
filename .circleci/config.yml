@@ -9,9 +9,9 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: see directory android sdk
-          command: ls -la /opt/android/sdk/*
+#      - run:
+#          name: see directory android sdk
+#          command: ls -la /opt/android/sdk/*
 
       - run:
           name: genarate cache key
@@ -19,17 +19,15 @@ jobs:
             find . -name 'build.gradle' | sort | xargs cat |
             shasum | awk '{print $1}' > /tmp/gradle_cache_seed
 
-      - restore_cache:
-          key: gradle-v0-{{ arch }}-{{ checksum "/tmp/gradle_cache_seed" }}
+#      - restore_cache:
+#          key: gradle-v0-{{ arch }}-{{ checksum "/tmp/gradle_cache_seed" }}
 
       - run:
           name: create avd
           command: |
-            if [ ! -d ~/.android/avd/test.avd ]; then
-              SYSTEM_IMAGES="system-images;android-30;google_apis;x86_64"
-              sdkmanager "$SYSTEM_IMAGES"
-              echo "no" | avdmanager --verbose create avd -n test -k "$SYSTEM_IMAGES"
-            fi
+            SYSTEM_IMAGES="system-images;android-30;google_apis;x86_64"
+            sdkmanager "$SYSTEM_IMAGES"
+            echo "no" | avdmanager --verbose create avd -n test -k "$SYSTEM_IMAGES"
 
       - run:
           name: launch emulator
@@ -107,7 +105,6 @@ jobs:
           key: gradle-v0-{{ arch }}-{{ checksum "/tmp/gradle_cache_seed" }}
           paths:
             - ~/.gradle
-            - ~/.android
 
 workflows:
   build:

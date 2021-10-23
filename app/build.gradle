@@ -20,8 +20,8 @@ android {
     }
 
     signingConfigs {
-        def store_file = file("$rootDir/key_store/debug.keystore")
         debug {
+            def store_file = file("$rootDir/key_store/debug")
             storeFile store_file
             storePassword "android"
             keyAlias "androiddebugkey"
@@ -29,6 +29,7 @@ android {
         }
 
         release {
+            def store_file = file("$rootDir/key_store/release")
             storeFile store_file
             storePassword "android"
             keyAlias "androiddebugkey"
@@ -88,5 +89,6 @@ dependencies {
 
     androidTestImplementation "androidx.test.ext:junit-ktx:$vAndroidJunit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$vEspresso"
-    
+    implementation "androidx.test.espresso:espresso-idling-resource:$vEspresso"
+
 }

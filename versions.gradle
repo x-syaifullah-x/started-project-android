@@ -26,8 +26,8 @@ def addRepos(RepositoryHandler handler) {
         url "https://jitpack.io"
     }
     handler.mavenLocal()
-    handler.mavenLocal { mar ->
-        mar.url("${rootDir}/.m2/repository")
+    handler.mavenLocal {
+        it.url("${rootDir}/.m2/repository")
     }
 }
 

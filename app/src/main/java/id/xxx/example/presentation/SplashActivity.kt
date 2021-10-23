@@ -12,6 +12,7 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import android.view.WindowManager
+import id.xxx.example.utils.espresso.EspressoIdlingResource
 import id.xxx.example.R
 import id.xxx.example.presentation.home.MainActivity
 
@@ -28,15 +29,18 @@ class SplashActivity : Activity() {
         val anim = ObjectAnimator.ofInt(
             drawable, "level", 0, 3000
         )
+
         if (drawable.alpha == 0) drawable.alpha = 255
         anim.repeatCount = ObjectAnimator.INFINITE
         anim.start()
 
+        EspressoIdlingResource.increment()
         handler.postDelayed({
             drawable.alpha = 0
             finish()
             startActivity(Intent(this, MainActivity::class.java))
-        }, 4000)
+            EspressoIdlingResource.decrement()
+        }, 500)
     }
 
     override fun onBackPressed() {

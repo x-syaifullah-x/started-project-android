@@ -11,6 +11,9 @@ ext {
     vGradle = "7.0.3"
     vKotlin = "1.5.31"
 
+    vAppCompat = "1.3.1"
+    vMaterial = "1.4.0"
+
     vJunit = "4.13.2"
     vAndroidJunit = "1.1.3"
     vMockito = "3.12.4"

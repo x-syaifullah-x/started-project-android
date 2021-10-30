@@ -1,2 +1,2 @@
-rootProject.name = "example"
+rootProject.name = "Android Starte Project TV"
 include ':app'

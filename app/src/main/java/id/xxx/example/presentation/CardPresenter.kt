@@ -1,4 +1,4 @@
-package id.xxx.example
+package id.xxx.example.presentation
 
 import android.graphics.drawable.Drawable
 import androidx.leanback.widget.ImageCardView
@@ -8,6 +8,8 @@ import android.util.Log
 import android.view.ViewGroup
 
 import com.bumptech.glide.Glide
+import id.xxx.example.R
+import id.xxx.example.data.Movie
 import kotlin.properties.Delegates
 
 /**

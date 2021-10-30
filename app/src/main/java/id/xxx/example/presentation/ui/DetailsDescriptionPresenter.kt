@@ -1,6 +1,7 @@
-package id.xxx.example
+package id.xxx.example.presentation.ui
 
 import androidx.leanback.widget.AbstractDetailsDescriptionPresenter
+import id.xxx.example.data.Movie
 
 class DetailsDescriptionPresenter : AbstractDetailsDescriptionPresenter() {
 

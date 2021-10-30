@@ -1,4 +1,4 @@
-package id.xxx.example
+package id.xxx.example.presentation.ui
 
 import java.util.Collections
 import java.util.Timer
@@ -9,6 +9,7 @@ import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import androidx.leanback.app.BackgroundManager
 import androidx.leanback.app.BrowseSupportFragment
 import androidx.leanback.widget.ArrayObjectAdapter
@@ -33,20 +34,22 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
+import id.xxx.example.R
+import id.xxx.example.data.Movie
+import id.xxx.example.data.MovieList
+import id.xxx.example.presentation.CardPresenter
+import id.xxx.example.presentation.ui.base.BaseBrowseSupportFragment
 
-class MainFragment : BrowseSupportFragment() {
+class MainFragment : BaseBrowseSupportFragment() {
 
-    private val mHandler = Handler()
+    private val mHandler = Handler(Looper.getMainLooper())
     private lateinit var mBackgroundManager: BackgroundManager
     private var mDefaultBackground: Drawable? = null
     private lateinit var mMetrics: DisplayMetrics
     private var mBackgroundTimer: Timer? = null
     private var mBackgroundUri: String? = null
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        Log.i(TAG, "onCreate")
-        super.onActivityCreated(savedInstanceState)
-
+    override fun onActivityCreated() {
         prepareBackgroundManager()
 
         setupUIElements()
@@ -65,10 +68,10 @@ class MainFragment : BrowseSupportFragment() {
     private fun prepareBackgroundManager() {
 
         mBackgroundManager = BackgroundManager.getInstance(activity)
-        mBackgroundManager.attach(activity!!.window)
-        mDefaultBackground = ContextCompat.getDrawable(activity!!, R.drawable.default_background)
+        mBackgroundManager.attach(requireActivity().window)
+        mDefaultBackground = ContextCompat.getDrawable(requireActivity(), R.drawable.default_background)
         mMetrics = DisplayMetrics()
-        activity!!.windowManager.defaultDisplay.getMetrics(mMetrics)
+        requireActivity().windowManager.defaultDisplay.getMetrics(mMetrics)
     }
 
     private fun setupUIElements() {
@@ -78,9 +81,9 @@ class MainFragment : BrowseSupportFragment() {
         isHeadersTransitionOnBackEnabled = true
 
         // set fastLane (or headers) background color
-        brandColor = ContextCompat.getColor(activity!!, R.color.fastlane_background)
+        brandColor = ContextCompat.getColor(requireActivity(), R.color.fastlane_background)
         // set search icon color
-        searchAffordanceColor = ContextCompat.getColor(activity!!, R.color.search_opaque)
+        searchAffordanceColor = ContextCompat.getColor(requireActivity(), R.color.search_opaque)
     }
 
     private fun loadRows() {
@@ -115,7 +118,7 @@ class MainFragment : BrowseSupportFragment() {
 
     private fun setupEventListeners() {
         setOnSearchClickedListener {
-            Toast.makeText(activity!!, "Implement your own in-app search", Toast.LENGTH_LONG)
+            Toast.makeText(requireActivity(), "Implement your own in-app search", Toast.LENGTH_LONG)
                 .show()
         }
 
@@ -132,12 +135,12 @@ class MainFragment : BrowseSupportFragment() {
         ) {
 
             if (item is Movie) {
-                Log.d(TAG, "Item: " + item.toString())
-                val intent = Intent(activity!!, DetailsActivity::class.java)
+                Log.d(TAG, "Item: $item")
+                val intent = Intent(requireActivity(), DetailsActivity::class.java)
                 intent.putExtra(DetailsActivity.MOVIE, item)
 
                 val bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                    activity!!,
+                    requireActivity(),
                     (itemViewHolder.view as ImageCardView).mainImageView,
                     DetailsActivity.SHARED_ELEMENT_NAME
                 )
@@ -145,10 +148,10 @@ class MainFragment : BrowseSupportFragment() {
                 startActivity(intent, bundle)
             } else if (item is String) {
                 if (item.contains(getString(R.string.error_fragment))) {
-                    val intent = Intent(activity!!, BrowseErrorActivity::class.java)
+                    val intent = Intent(requireActivity(), BrowseErrorActivity::class.java)
                     startActivity(intent)
                 } else {
-                    Toast.makeText(activity!!, item, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(), item, Toast.LENGTH_SHORT).show()
                 }
             }
         }

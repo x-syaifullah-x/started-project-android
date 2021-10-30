@@ -1,4 +1,4 @@
-package id.xxx.example
+package id.xxx.example.presentation.ui
 
 import android.os.Bundle
 import android.os.Handler
@@ -10,6 +10,7 @@ import android.widget.FrameLayout
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import id.xxx.example.R
 
 /**
  * BrowseErrorActivity shows how to use ErrorFragment.

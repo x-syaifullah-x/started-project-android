@@ -12,6 +12,7 @@
         android:required="true" />
 
     <application
+        android:name=".App"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,7 +20,7 @@
         android:theme="@style/Theme.Example">
 
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.ui.MainActivity"
             android:banner="@drawable/app_icon_your_company"
             android:exported="true"
             android:icon="@drawable/app_icon_your_company"
@@ -33,13 +34,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DetailsActivity"
+            android:name=".presentation.ui.DetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".PlaybackActivity"
+            android:name=".presentation.ui.PlaybackActivity"
             android:exported="false" />
         <activity
-            android:name=".BrowseErrorActivity"
+            android:name=".presentation.ui.BrowseErrorActivity"
             android:exported="false" />
     </application>
 

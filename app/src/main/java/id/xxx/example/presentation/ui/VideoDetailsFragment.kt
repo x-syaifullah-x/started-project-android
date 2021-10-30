@@ -1,4 +1,4 @@
-package id.xxx.example
+package id.xxx.example.presentation.ui
 
 import android.content.Context
 import android.content.Intent
@@ -30,8 +30,13 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
+import id.xxx.example.R
+import id.xxx.example.data.Movie
+import id.xxx.example.data.MovieList
+import id.xxx.example.presentation.CardPresenter
 
 import java.util.Collections
+import kotlin.math.roundToInt
 
 /**
  * A wrapper fragment for leanback details screens.
@@ -51,7 +56,7 @@ class VideoDetailsFragment : DetailsSupportFragment() {
 
         mDetailsBackground = DetailsSupportFragmentBackgroundController(this)
 
-        mSelectedMovie = activity!!.intent.getSerializableExtra(DetailsActivity.MOVIE) as Movie
+        mSelectedMovie = requireActivity().intent.getSerializableExtra(DetailsActivity.MOVIE) as Movie
         if (mSelectedMovie != null) {
             mPresenterSelector = ClassPresenterSelector()
             mAdapter = ArrayObjectAdapter(mPresenterSelector)
@@ -62,14 +67,14 @@ class VideoDetailsFragment : DetailsSupportFragment() {
             initializeBackground(mSelectedMovie)
             onItemViewClickedListener = ItemViewClickedListener()
         } else {
-            val intent = Intent(activity!!, MainActivity::class.java)
+            val intent = Intent(requireActivity(), MainActivity::class.java)
             startActivity(intent)
         }
     }
 
     private fun initializeBackground(movie: Movie?) {
         mDetailsBackground.enableParallax()
-        Glide.with(activity!!)
+        Glide.with(requireActivity())
             .asBitmap()
             .centerCrop()
             .error(R.drawable.default_background)
@@ -88,10 +93,10 @@ class VideoDetailsFragment : DetailsSupportFragment() {
     private fun setupDetailsOverviewRow() {
         Log.d(TAG, "doInBackground: " + mSelectedMovie?.toString())
         val row = DetailsOverviewRow(mSelectedMovie)
-        row.imageDrawable = ContextCompat.getDrawable(activity!!, R.drawable.default_background)
-        val width = convertDpToPixel(activity!!, DETAIL_THUMB_WIDTH)
-        val height = convertDpToPixel(activity!!, DETAIL_THUMB_HEIGHT)
-        Glide.with(activity!!)
+        row.imageDrawable = ContextCompat.getDrawable(requireActivity(), R.drawable.default_background)
+        val width = convertDpToPixel(requireActivity(), DETAIL_THUMB_WIDTH)
+        val height = convertDpToPixel(requireActivity(), DETAIL_THUMB_HEIGHT)
+        Glide.with(requireActivity())
             .load(mSelectedMovie?.cardImageUrl)
             .centerCrop()
             .error(R.drawable.default_background)
@@ -138,7 +143,7 @@ class VideoDetailsFragment : DetailsSupportFragment() {
         // Set detail background.
         val detailsPresenter = FullWidthDetailsOverviewRowPresenter(DetailsDescriptionPresenter())
         detailsPresenter.backgroundColor =
-            ContextCompat.getColor(activity!!, R.color.selected_background)
+            ContextCompat.getColor(requireActivity(), R.color.selected_background)
 
         // Hook up transition element.
         val sharedElementHelper = FullWidthDetailsOverviewSharedElementHelper()
@@ -150,11 +155,11 @@ class VideoDetailsFragment : DetailsSupportFragment() {
 
         detailsPresenter.onActionClickedListener = OnActionClickedListener { action ->
             if (action.id == ACTION_WATCH_TRAILER) {
-                val intent = Intent(activity!!, PlaybackActivity::class.java)
+                val intent = Intent(requireActivity(), PlaybackActivity::class.java)
                 intent.putExtra(DetailsActivity.MOVIE, mSelectedMovie)
                 startActivity(intent)
             } else {
-                Toast.makeText(activity!!, action.toString(), Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity(), action.toString(), Toast.LENGTH_SHORT).show()
             }
         }
         mPresenterSelector.addClassPresenter(DetailsOverviewRow::class.java, detailsPresenter)
@@ -177,7 +182,7 @@ class VideoDetailsFragment : DetailsSupportFragment() {
 
     private fun convertDpToPixel(context: Context, dp: Int): Int {
         val density = context.applicationContext.resources.displayMetrics.density
-        return Math.round(dp.toFloat() * density)
+        return (dp.toFloat() * density).roundToInt()
     }
 
     private inner class ItemViewClickedListener : OnItemViewClickedListener {
@@ -188,13 +193,13 @@ class VideoDetailsFragment : DetailsSupportFragment() {
             row: Row
         ) {
             if (item is Movie) {
-                Log.d(TAG, "Item: " + item.toString())
-                val intent = Intent(activity!!, DetailsActivity::class.java)
+                Log.d(TAG, "Item: $item")
+                val intent = Intent(requireActivity(), DetailsActivity::class.java)
                 intent.putExtra(resources.getString(R.string.movie), mSelectedMovie)
 
                 val bundle =
                     ActivityOptionsCompat.makeSceneTransitionAnimation(
-                        activity!!,
+                        requireActivity(),
                         (itemViewHolder?.view as ImageCardView).mainImageView,
                         DetailsActivity.SHARED_ELEMENT_NAME
                     )
@@ -205,15 +210,15 @@ class VideoDetailsFragment : DetailsSupportFragment() {
     }
 
     companion object {
-        private val TAG = "VideoDetailsFragment"
+        private const val TAG = "VideoDetailsFragment"
 
-        private val ACTION_WATCH_TRAILER = 1L
-        private val ACTION_RENT = 2L
-        private val ACTION_BUY = 3L
+        private const val ACTION_WATCH_TRAILER = 1L
+        private const val ACTION_RENT = 2L
+        private const val ACTION_BUY = 3L
 
-        private val DETAIL_THUMB_WIDTH = 274
-        private val DETAIL_THUMB_HEIGHT = 274
+        private const val DETAIL_THUMB_WIDTH = 274
+        private const val DETAIL_THUMB_HEIGHT = 274
 
-        private val NUM_COLS = 10
+        private const val NUM_COLS = 10
     }
 }

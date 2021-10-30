@@ -1,4 +1,4 @@
-package id.xxx.example
+package id.xxx.example.presentation.ui
 
 import android.net.Uri
 import android.os.Bundle
@@ -7,6 +7,7 @@ import androidx.leanback.app.VideoSupportFragmentGlueHost
 import androidx.leanback.media.MediaPlayerAdapter
 import androidx.leanback.media.PlaybackTransportControlGlue
 import androidx.leanback.widget.PlaybackControlsRow
+import id.xxx.example.data.Movie
 
 /** Handles video playback with media controls. */
 class PlaybackVideoFragment : VideoSupportFragment() {
@@ -23,7 +24,7 @@ class PlaybackVideoFragment : VideoSupportFragment() {
         val playerAdapter = MediaPlayerAdapter(activity)
         playerAdapter.setRepeatAction(PlaybackControlsRow.RepeatAction.INDEX_NONE)
 
-        mTransportControlGlue = PlaybackTransportControlGlue(getActivity(), playerAdapter)
+        mTransportControlGlue = PlaybackTransportControlGlue(activity, playerAdapter)
         mTransportControlGlue.host = glueHost
         mTransportControlGlue.title = title
         mTransportControlGlue.subtitle = description

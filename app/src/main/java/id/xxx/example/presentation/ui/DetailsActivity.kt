@@ -1,7 +1,8 @@
-package id.xxx.example
+package id.xxx.example.presentation.ui
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
+import id.xxx.example.R
 
 /**
  * Details activity class that loads [VideoDetailsFragment] class.

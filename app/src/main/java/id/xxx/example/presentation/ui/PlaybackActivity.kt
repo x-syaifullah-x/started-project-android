@@ -1,4 +1,4 @@
-package id.xxx.example
+package id.xxx.example.presentation.ui
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity

@@ -1,4 +1,4 @@
-package id.xxx.example
+package id.xxx.example.data
 
 object MovieList {
     val MOVIE_CATEGORY = arrayOf(

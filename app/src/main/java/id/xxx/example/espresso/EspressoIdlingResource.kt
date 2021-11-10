@@ -1,4 +1,4 @@
-package id.xxx.example.utils.espresso
+package id.xxx.example.espresso
 
 import androidx.test.espresso.idling.CountingIdlingResource
 import id.xxx.example.constant.AppBuild

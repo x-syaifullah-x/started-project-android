@@ -8,16 +8,13 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import android.view.WindowManager
 import id.xxx.example.R
 import id.xxx.example.presentation.home.MainActivity
-import id.xxx.example.utils.espresso.EspressoIdlingResource
-import java.io.File
+import id.xxx.example.espresso.EspressoIdlingResource
 
 class SplashActivity : Activity() {
 

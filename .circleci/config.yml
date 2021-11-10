@@ -12,7 +12,7 @@ jobs:
       - run:
           name: create avd
           command: |
-            SYSTEM_IMAGES="system-images;android-30;google_apis;x86_64"
+            SYSTEM_IMAGES="system-images;android-31;google_apis;x86_64"
             sdkmanager "$SYSTEM_IMAGES"
             echo "no" | avdmanager --verbose create avd -n test -k "$SYSTEM_IMAGES"
 
@@ -60,7 +60,7 @@ jobs:
           command: circle-android wait-for-boot
 
       - run:
-          name: disable emulator animations
+          name: disable emulator animations and close system dialog
           command: |
             adb shell settings put global window_animation_scale 0.0
             adb shell settings put global transition_animation_scale 0.0

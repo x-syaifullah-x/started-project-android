@@ -2,18 +2,18 @@ package id.xxx.example.presentation
 
 import android.animation.ObjectAnimator
 import android.app.Activity
-import android.content.ContentValues
 import android.content.Intent
 import android.graphics.drawable.LayerDrawable
-import android.os.*
+import android.os.Build
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import android.view.WindowManager
-import androidx.core.content.FileProvider
-import id.xxx.example.BuildConfig
 import id.xxx.example.R
 import id.xxx.example.presentation.home.MainActivity
 import id.xxx.example.utils.espresso.EspressoIdlingResource

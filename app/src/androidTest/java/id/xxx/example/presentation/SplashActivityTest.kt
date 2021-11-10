@@ -1,5 +1,6 @@
 package id.xxx.example.presentation
 
+import android.content.Intent
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.assertion.ViewAssertions
@@ -25,6 +26,9 @@ class SplashActivityTest {
 
     @Test
     fun launch_splash_activity_test() {
+        rule.scenario.onActivity {
+            it.sendBroadcast(Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS))
+        }
 //        Espresso.onView(ViewMatchers.withResourceName("content"))
 //            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
         Assert.assertTrue(true)

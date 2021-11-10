@@ -32,7 +32,7 @@ jobs:
           key: gradle-v0-{{ arch }}-{{ checksum "/tmp/gradle_cache_seed" }}
 
       - run:
-          name: generate key store debug
+          name: create key store for debug
           command: |
             if [ ! -d ~/.android ]; then
               mkdir -p ~/.android

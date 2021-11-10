@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build:
+  build_androidTest_unitTest:
     machine:
       image: android:202102-01
     resource_class: large
@@ -12,7 +12,7 @@ jobs:
       - run:
           name: create avd
           command: |
-            SYSTEM_IMAGES="system-images;android-31;google_apis;x86_64"
+            SYSTEM_IMAGES="system-images;android-30;google_apis;x86_64"
             sdkmanager "$SYSTEM_IMAGES"
             echo "no" | avdmanager --verbose create avd -n test -k "$SYSTEM_IMAGES"
 
@@ -40,20 +40,24 @@ jobs:
             keytool -genkey -keystore ~/.android/debug.keystore -v -alias androiddebugkey -dname "CN=Android Debug,O=Android,C=US" -keypass android -storepass android -keyalg RSA -keysize 2048 -validity 10000
 
       - run:
-          name: replace gradle properties
+          name: replace org.gradle.jvmargs in gradle properties
           command: |
             ORG_GRADLE_JVM=`cat gradle.properties | grep org.gradle.jvmargs`
             sed -i 's/'"${ORG_GRADLE_JVM}"'/org.gradle.jvmargs=-Xmx8192m -Dfile.encoding=UTF-8/g' gradle.properties
             cat gradle.properties | grep org.gradle.jvmargs
 
       - run:
+          name: download dependencies
+          command: ./gradlew androidDependencies
+
+      - save_cache:
+          key: gradle-v0-{{ arch }}-{{ checksum "/tmp/gradle_cache_seed" }}
+          paths:
+            - ~/.gradle
+
+      - run:
           name: gradle clean build
           command: ./gradlew clean build
-
-      #      - run:
-      #          name: gradle assemble android test
-      #          command: |
-      #            ./gradlew assembleAndroidTest
 
       - run:
           name: wait for emulator to start
@@ -102,12 +106,7 @@ jobs:
       - store_test_results:
           path: app/build/test-results
 
-      - save_cache:
-          key: gradle-v0-{{ arch }}-{{ checksum "/tmp/gradle_cache_seed" }}
-          paths:
-            - ~/.gradle
-
 workflows:
   build:
     jobs:
-      - build
+      - build_androidTest_unitTest

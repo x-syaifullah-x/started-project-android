@@ -1,13 +1,15 @@
 package id.xxx.example.presentation
 
-import android.content.Intent
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import id.xxx.example.utils.espresso.EspressoIdlingResource
-import org.junit.*
+import org.junit.After
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
 
 class SplashActivityTest {
 
@@ -26,9 +28,6 @@ class SplashActivityTest {
 
     @Test
     fun launch_splash_activity_test() {
-        rule.scenario.onActivity {
-            it.sendBroadcast(Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS))
-        }
         Espresso.onView(ViewMatchers.withResourceName("content"))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }

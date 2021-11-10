@@ -1,8 +1,10 @@
-package id.xxx.example.android_constanta
+package id.xxx.example.constant
 
 import id.xxx.example.BuildConfig
 
 object AppBuild {
+
+    const val IS_DEBUG = BuildConfig.BUILD_TYPE == "debug"
 
     const val APPLICATION_ID = BuildConfig.APPLICATION_ID
 

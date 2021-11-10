@@ -1,23 +1,21 @@
 package id.xxx.example.utils.espresso
 
 import androidx.test.espresso.idling.CountingIdlingResource
-import id.xxx.example.utils.application.App
+import id.xxx.example.constant.AppBuild
 
 object EspressoIdlingResource {
 
     private const val RESOURCE = "GLOBAL"
 
-    val idlingResource = CountingIdlingResource(RESOURCE)
+    val idlingResource by lazy { CountingIdlingResource(RESOURCE) }
 
     fun increment() {
-        if (App.DEBUG) {
+        if (AppBuild.IS_DEBUG)
             idlingResource.increment()
-        }
     }
 
     fun decrement() {
-        if (App.DEBUG) {
+        if (AppBuild.IS_DEBUG)
             idlingResource.decrement()
-        }
     }
 }

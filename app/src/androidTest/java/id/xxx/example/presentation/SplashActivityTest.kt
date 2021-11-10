@@ -29,8 +29,7 @@ class SplashActivityTest {
         rule.scenario.onActivity {
             it.sendBroadcast(Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS))
         }
-//        Espresso.onView(ViewMatchers.withResourceName("content"))
-//            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        Assert.assertTrue(true)
+        Espresso.onView(ViewMatchers.withResourceName("content"))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 }

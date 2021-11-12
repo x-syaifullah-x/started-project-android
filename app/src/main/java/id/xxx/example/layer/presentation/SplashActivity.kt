@@ -1,4 +1,4 @@
-package id.xxx.example.presentation
+package id.xxx.example.layer.presentation
 
 import android.animation.ObjectAnimator
 import android.app.Activity
@@ -13,7 +13,7 @@ import android.view.WindowInsets
 import android.view.WindowInsetsController
 import android.view.WindowManager
 import id.xxx.example.R
-import id.xxx.example.presentation.home.MainActivity
+import id.xxx.example.layer.presentation.home.MainActivity
 import id.xxx.example.espresso.EspressoIdlingResource
 
 class SplashActivity : Activity() {

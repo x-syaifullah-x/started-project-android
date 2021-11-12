@@ -66,12 +66,27 @@ android {
 
     kotlinOptions { jvmTarget = "1.8" }
 
-    testBuildType "debug"
-
     testOptions {
         unitTests.returnDefaultValues = true
         unitTests.includeAndroidResources = true
     }
+
+//    testBuildType "debug"
+
+//    sourceSets {
+//        main {
+//            res.srcDirs = [
+//                    "$rootDir/app/src/main/res",
+//            ]
+//            java.srcDirs = [
+//                    "$rootDir/app/src/main"
+//            ]
+//            manifest.srcFile 'AndroidManifest.xml'
+//            proto {
+//                srcDir 'proto'
+//            }
+//        }
+//    }
 
 //    packagingOptions {
 //        exclude "**/attach_hotspot_windows.dll"
@@ -79,6 +94,8 @@ android {
 }
 
 dependencies {
+
+    implementation fileTree(dir: "libs", include: ["*.jar"])
 
     implementation "androidx.appcompat:appcompat:$vAppCompat"
     implementation "com.google.android.material:material:$vMaterial"

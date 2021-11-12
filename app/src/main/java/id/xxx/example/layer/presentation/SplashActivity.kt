@@ -13,8 +13,8 @@ import android.view.WindowInsets
 import android.view.WindowInsetsController
 import android.view.WindowManager
 import id.xxx.example.R
-import id.xxx.example.layer.presentation.home.MainActivity
 import id.xxx.example.espresso.EspressoIdlingResource
+import id.xxx.example.layer.presentation.home.MainActivity
 
 class SplashActivity : Activity() {
 
